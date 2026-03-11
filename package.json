@@ -1,0 +1,31 @@
+{
+  "name": "estate-management-system",
+  "private": true,
+  "scripts": {
+    "client:install": "npm install --prefix client",
+    "server:install": "npm install --prefix server",
+    "install": "npm run client:install && npm run server:install",
+    "client:build": "npm run build --prefix client",
+    "server:start": "npm run start --prefix server",
+    "build": "npm run client:build",
+    "start": "npm run server:start",
+    "dev": "concurrently \"npm run server:dev --prefix server\" \"npm run dev --prefix client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.9",
+    "@react-google-maps/api": "^2.20.8",
+    "bcryptjs": "^3.0.3",
+    "chart.js": "^4.5.1",
+    "cloudinary": "^2.9.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer-storage-cloudinary": "^2.2.1",
+    "nodemailer": "^8.0.2",
+    "pdfkit": "^0.17.2",
+    "react-chartjs-2": "^5.3.1"
+  }
+}

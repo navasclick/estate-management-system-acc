@@ -1,0 +1,47 @@
+.App {
+  text-align: left;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.App nav {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.App nav h1 {
+  margin: 0 0 20px 0;
+  font-size: 28px;
+}
+
+.App nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.App nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.App nav a:hover {
+  background-color: #495057;
+}
+
+.App > div > div:last-child {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 4px;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

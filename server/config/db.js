@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/estateDB");
+    const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/estateDB";
+    await mongoose.connect(mongoURI);
 
     console.log("MongoDB Connected");
   } catch (error) {

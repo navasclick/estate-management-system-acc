@@ -1,0 +1,262 @@
+{
+  "info": {
+    "name": "Estate Management System API",
+    "description": "API collection for testing the Estate Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "authToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin User\",\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('authToken', response.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Churches",
+      "item": [
+        {
+          "name": "Add Church",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"churchName\": \"St. Mary's Church\",\n  \"location\": \"Downtown\",\n  \"pastorName\": \"Father John\",\n  \"contactNumber\": \"+1234567890\",\n  \"email\": \"stmary@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/churches/add",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "churches", "add"]
+            }
+          }
+        },
+        {
+          "name": "Get All Churches",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/churches",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "churches"]
+            }
+          }
+        },
+        {
+          "name": "Search Churches",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/churches/search?keyword=St",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "churches", "search"],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "St"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lands",
+      "item": [
+        {
+          "name": "Add Land",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "landName",
+                  "value": "Church Property A",
+                  "type": "text"
+                },
+                {
+                  "key": "location",
+                  "value": "123 Main St",
+                  "type": "text"
+                },
+                {
+                  "key": "area",
+                  "value": "5000",
+                  "type": "text"
+                },
+                {
+                  "key": "churchId",
+                  "value": "60f7b3b3b3b3b3b3b3b3b3b3",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/lands/add",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lands", "add"]
+            }
+          }
+        },
+        {
+          "name": "Get All Lands",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/lands",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lands"]
+            }
+          }
+        },
+        {
+          "name": "Update Land",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "landName",
+                  "value": "Updated Church Property A",
+                  "type": "text"
+                },
+                {
+                  "key": "location",
+                  "value": "456 Oak St",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/lands/update/60f7b3b3b3b3b3b3b3b3b3b3",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "lands", "update", "60f7b3b3b3b3b3b3b3b3b3b3"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/dashboard/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dashboard", "stats"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

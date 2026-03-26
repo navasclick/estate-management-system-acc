@@ -86,6 +86,7 @@ npm run build
 ### Option 1: Manual Deployment
 
 1. Build the application:
+
    ```bash
    npm run prod
    ```
@@ -107,11 +108,13 @@ docker run -p 5000:5000 --env-file server/.env estate-management
 ### Option 3: Cloud Platforms
 
 #### Railway
+
 1. Connect your GitHub repository
 2. Set environment variables in Railway dashboard
 3. Deploy automatically
 
 #### Render
+
 1. Create a new Web Service
 2. Connect your repository
 3. Set build command: `npm run build`
@@ -119,6 +122,7 @@ docker run -p 5000:5000 --env-file server/.env estate-management
 5. Configure environment variables
 
 #### Heroku
+
 1. Create a new app
 2. Set buildpacks for Node.js
 3. Configure environment variables
@@ -137,6 +141,7 @@ Make sure to set these environment variables in your deployment platform:
 ## API Documentation
 
 ### Churches
+
 - `GET /api/churches` - Get all churches
 - `POST /api/churches` - Create a new church
 - `PUT /api/churches/:id` - Update a church
@@ -150,11 +155,9 @@ Make sure to set these environment variables in your deployment platform:
 - **File Upload**: Cloudinary
 - **Email**: Nodemailer
 
-These values are used by the application for database connectivity, JWTs, and file uploads.
-
 ### Running the Application
 
-#### Development
+#### Development Setup
 
 Start the backend server:
 
@@ -187,12 +190,6 @@ Start the backend:
 cd server
 npm start
 ```
-
-## Technologies Used
-
-- **Frontend**: React, Vite
-- **Backend**: Node.js, Express
-- **Other**: CORS, dotenv
 
 ## Contributing
 
